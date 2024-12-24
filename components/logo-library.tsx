@@ -120,6 +120,10 @@ const fetchLogos = async () => {
           onChange={(e) => handleSearch(e.target.value)}
           className="pl-10"
           autoComplete="off"
+          name="search"
+          autoCorrect="off"
+          spellCheck="false"
+          aria-label="Search logos"
         />
         <Search className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
       </div>
