@@ -50,7 +50,7 @@ function findBestFitForSheet(
   while (logosToPlace.length > 0) {
     let currentX = MARGIN;
     let rowHeight = 0;
-    const rowLogos = [];
+    const rowLogos: any = [];
 
     // Try to fill the current row
     for (let i = 0; i < logosToPlace.length; i++) {
