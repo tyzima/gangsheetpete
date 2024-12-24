@@ -19,6 +19,20 @@ export default function Home() {
   const [isLibraryExpanded, setIsLibraryExpanded] = useState(false);
   const [isLogoSectionCollapsed, setIsLogoSectionCollapsed] = useState(false);
 
+  useEffect(() => {
+    document.body.style.transform = "scale(0.9)";
+    document.body.style.transformOrigin = "top left";
+    document.body.style.margin = "0";
+    document.body.style.width = "111.11%";
+
+    return () => {
+      document.body.style.transform = "";
+      document.body.style.transformOrigin = "";
+      document.body.style.margin = "";
+      document.body.style.width = "";
+    };
+  }, []);
+
   const handleLogoSelect = (logo: SelectedLogo) => {
     setSheets([]);
     setShowSheets(false);
