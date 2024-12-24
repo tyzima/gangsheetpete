@@ -100,9 +100,9 @@ export default function Home() {
       <div className="container mx-auto p-4 space-y-8">
         <div className="text-center space-y-4">
           <div className="flex items-left justify-left gap-2">
-            <LayoutPanelLeft className="h-10 w-10 mt-1 text-primary" />
+            <LayoutPanelLeft className="h-4 w-4 mt-1 text-primary" />
             <h1 className="text-2xl font-normal tracking-tighter">
-              <span className="text-2xl font-black">Sheet </span>
+              <span className="text-2xl font-bold">Sheet </span>
                Builder
             </h1>
           </div>
