@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { SelectedLogo, Sheet, GroupedSheet, SheetSize } from '@/types';
 import { calculateSheets } from '@/lib/sheet-calculator';
 import { Printer, ChevronUp, ChevronDown, LayoutPanelLeft } from 'lucide-react';
-
+import { Card } from '@/components/ui/card';
 export default function Home() {
   const [selectedLogos, setSelectedLogos] = useState<SelectedLogo[]>([]);
   const [sheets, setSheets] = useState<GroupedSheet[]>([]);
@@ -167,22 +167,30 @@ export default function Home() {
                         : 'lg:opacity-100 lg:translate-x-0'
                     }`}
                   >
-                    <SelectedLogos
-                      logos={selectedLogos}
-                      onLogoRemove={handleLogoRemove}
-                      onLogoUpdate={handleLogoUpdate}
-                      preferredSheetSize={preferredSheetSize}
-                      onPreferredSheetSizeChange={setPreferredSheetSize}
-                    />
-
-                    <Button
-                      className="w-full"
-                      size="lg"
-                      onClick={handleBuildSheets}
-                      disabled={selectedLogos.length === 0 || isCalculating}
-                    >
-                      {isCalculating ? 'Calculating...' : 'Build Sheets'}
-                    </Button>
+                    <div className="flex flex-col h-full">
+                      <div className="flex-grow overflow-auto">
+                        <SelectedLogos
+                          logos={selectedLogos}
+                          onLogoRemove={handleLogoRemove}
+                          onLogoUpdate={handleLogoUpdate}
+                          preferredSheetSize={preferredSheetSize}
+                          onPreferredSheetSizeChange={setPreferredSheetSize}
+                        />
+                      </div>
+                      
+                      <div className="sticky -bottom-28 pt-4 bg-gradient-to-t from-background via-background to-transparent pb-4 -mt-8">
+                        <div className="relative pt-8 pb-4">
+                          <Button
+                            className="w-full"
+                            size="lg"
+                            onClick={handleBuildSheets}
+                            disabled={selectedLogos.length === 0 || isCalculating}
+                          >
+                            {isCalculating ? 'Calculating...' : 'Build Sheets'}
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -191,27 +199,29 @@ export default function Home() {
 
           {showSheets && sheets.length > 0 && (
             <div className="mt-8 relative">
-              <div className="flex justify-between items-center mb-4">
-                <div className="flex items-center space-x-2">
-                  <span className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-200 font-semibold">
-                    3
-                  </span>
-                  <span className="text-xl font-semibold">Download Sheets</span>
-                </div>{' '}
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                {sheets.map((groupedSheet, index) => (
-                  <SheetPreview
-                    key={index}
-                    sheet={groupedSheet.sheet}
-                    index={groupedSheet.index}
-                    quantity={groupedSheet.quantity}
-                    onSheetUpdate={(updatedSheet) =>
-                      handleSheetUpdate(index, updatedSheet)
-                    }
-                  />
-                ))}
-              </div>
+              <Card className="p-4">
+                <div className="flex justify-between items-center mb-4">
+                  <div className="flex items-center space-x-2">
+                    <span className="w-8 h-8 flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-200 font-semibold">
+                      3
+                    </span>
+                    <span className="text-xl font-semibold">Download Sheets</span>
+                  </div>{' '}
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                  {sheets.map((groupedSheet, index) => (
+                    <SheetPreview
+                      key={index}
+                      sheet={groupedSheet.sheet}
+                      index={groupedSheet.index}
+                      quantity={groupedSheet.quantity}
+                      onSheetUpdate={(updatedSheet) =>
+                        handleSheetUpdate(index, updatedSheet)
+                      }
+                    />
+                  ))}
+                </div>
+              </Card>
             </div>
           )}
         </div>
