@@ -101,9 +101,9 @@ export default function Home() {
         <div className="text-center space-y-4">
           <div className="flex items-left justify-left gap-2">
             <LayoutPanelLeft className="h-10 w-10 mt-1 text-primary" />
-            <h1 className="text-3xl font-semibold tracking-tighter">
-              <span className="text-3xl font-black">DTF </span>
-              Transfers
+            <h1 className="text-2xl font-normal tracking-tighter">
+              <span className="text-2xl font-black">Sheet </span>
+               Builder
             </h1>
           </div>
         </div>
